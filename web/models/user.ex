@@ -18,22 +18,25 @@ defmodule ElixirChina.User do
     user
     |> cast(params, ~w(name email admin password), ~w(score))
     |> validate_length(:name, min: 3)
+    |> validate_length(:name, max: 20)
     |> validate_length(:password, min: 6)
     |> unique_constraint(:name, name: :users_name_key)
     |> unique_constraint(:email, name: :users_email_index)
   end
 
   def valid_password?(record, password) do
-    salt = String.slice(record.password, 0, 29)
-    {:ok, hashed_password} = :bcrypt.hashpw(password, salt)
-    "#{hashed_password}" == record.password
+    #salt = String.slice(record.password, 0, 29)
+    #{:ok, hashed_password} = :bcrypt.hashpw(password, salt)
+    #"#{hashed_password}" == record.password
+    password == record.password
   end
 
   def encrypt_password(password) do
     if password != nil do
-      {:ok, salt} = :bcrypt.gen_salt
-      {:ok, hashed_password} = :bcrypt.hashpw(password, salt)
-      hashed_password
+      #{:ok, salt} = :bcrypt.gen_salt
+      #{:ok, hashed_password} = :bcrypt.hashpw(password, salt)
+      #hashed_password
+      password
     end
   end
 end

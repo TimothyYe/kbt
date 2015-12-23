@@ -18,7 +18,7 @@ defmodule ElixirChina.Mixfile do
   def application do
     [
       mod: { ElixirChina, [] },
-      applications: [:phoenix, :cowboy, :logger, :postgrex, :ecto, :bcrypt]
+      applications: [:phoenix, :cowboy, :logger, :mariaex, :ecto]
     ]
   end
 
@@ -37,9 +37,9 @@ defmodule ElixirChina.Mixfile do
       {:phoenix_live_reload, "~> 1.0.1", only: :dev},
       {:linguist, "~> 0.1.5"},
       {:cowboy, "~> 1.0.0"},
-      {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 1.1.0"},
-      {:bcrypt, github: "chef/erlang-bcrypt"},
+      {:mariaex, ">= 0.0.0"},
+      #{:bcrypt, github: "chef/erlang-bcrypt"},
       {:uuid, github: "okeuday/uuid"}
     ]
   end
