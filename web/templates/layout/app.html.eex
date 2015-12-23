@@ -7,7 +7,7 @@
     <meta name="description" content="ElixirChina(ElixirCN)是中国人学习和交流Elixir语言的乐园。">
     <meta name="author" content="">
 
-    <title>ElixirChina</title>
+    <title>程序猿键盘发烧社</title>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/app.css">
@@ -19,7 +19,6 @@
     <script type="text/javascript" src="/js/pagination.js"></script>
     <script type="text/javascript" src="/js/helper.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
-    <%= render ElixirChina.SharedView, "_google_analytics.html", [] %>
   </head>
 
   <body>
@@ -33,7 +32,6 @@
           <%= render ElixirChina.SharedView, "_leading_board.html", conn: @conn, leading_users: @leading_users %>
           <%= render ElixirChina.SharedView, "_statics.html", post_count: @post_count, comment_count: @comment_count, user_count: @user_count %>
         <% end %>
-        <%= render ElixirChina.SharedView, "_contrib.html", [] %>
         <%= render ElixirChina.SharedView, "_friend_community.html", conn: @conn %>
       </sidebar>
 
