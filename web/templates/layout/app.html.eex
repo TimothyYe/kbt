@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="ElixirChina(ElixirCN)是中国人学习和交流Elixir语言的乐园。">
+    <meta name="description" content="程序员键盘发烧与交流社区">
     <meta name="author" content="">
 
     <title>程序猿键盘发烧社</title>
@@ -40,7 +40,7 @@
     <div id="footer">
       <div class="container">
         <div class="text-muted">
-          Made with &#9825; by Elixir makers.
+          Powered by Elixir & Phoenix Framework.
         </div>
       </div>
     </div>
