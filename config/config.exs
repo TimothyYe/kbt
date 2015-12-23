@@ -23,12 +23,11 @@ config :logger, :console,
 
 # Configures database
 config :elixir_china, ElixirChina.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  database: "elixir_china",
-  username: "postgres",
-  password: "postgres",
+  adapter: Ecto.Adapters.MySQL,
+  database: "kbt",
+  username: "root",
+  password: "123456",
   hostname: "localhost"
-
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
