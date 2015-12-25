@@ -40,7 +40,8 @@ defmodule ElixirChina.Mixfile do
       {:ecto, "~> 1.1.0"},
       {:mariaex, ">= 0.0.0"},
       {:bcrypt, github: "chef/erlang-bcrypt"},
-      {:uuid, github: "okeuday/uuid"}
+      {:uuid, github: "okeuday/uuid"},
+      {:exrm, "~> 0.19.9"}
     ]
   end
 end
