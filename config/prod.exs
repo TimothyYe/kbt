@@ -14,8 +14,7 @@ use Mix.Config
 config :elixir_china, ElixirChina.Endpoint,
   url: [host: "127.0.0.1"],
   http: [port: System.get_env("PORT") || 5000],
-  secret_key_base: "ziHerwRAx1RS4ksABZzkL3Vl9aa1RH7b80BIv3v7Pn8l0ciAmfCjmuGKJxqoVoAL",
-  server: true
+  secret_key_base: "ziHerwRAx1RS4ksABZzkL3Vl9aa1RH7b80BIv3v7Pn8l0ciAmfCjmuGKJxqoVoAL"
 
 config :logger,
   level: :info
