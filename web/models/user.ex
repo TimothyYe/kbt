@@ -26,15 +26,18 @@ defmodule ElixirChina.User do
 
   def valid_password?(record, password) do
     salt = String.slice(record.password, 0, 29)
-    {:ok, hashed_password} = :bcrypt.hashpw(password, salt)
-    "#{hashed_password}" == record.password
+    #{:ok, hashed_password} = :bcrypt.hashpw(password, salt)
+    #"#{hashed_password}" == record.password
+    password == record.password
+
   end
 
   def encrypt_password(password) do
     if password != nil do
       {:ok, salt} = :bcrypt.gen_salt
       {:ok, hashed_password} = :bcrypt.hashpw(password, salt)
-      hashed_password
+      #hashed_password
+      password
     end
   end
 end
