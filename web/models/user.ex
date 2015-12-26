@@ -34,8 +34,8 @@ defmodule ElixirChina.User do
 
   def encrypt_password(password) do
     if password != nil do
-      {:ok, salt} = :bcrypt.gen_salt
-      {:ok, hashed_password} = :bcrypt.hashpw(password, salt)
+      #{:ok, salt} = :bcrypt.gen_salt
+      #{:ok, hashed_password} = :bcrypt.hashpw(password, salt)
       #hashed_password
       password
     end
