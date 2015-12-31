@@ -1,1 +1,1 @@
-MIX_ENV=prod elixir --detached -S mix phoenix.server
+MIX_ENV=prod elixir --erl "-smp enable" --detached -S mix phoenix.server
