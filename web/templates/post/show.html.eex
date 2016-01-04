@@ -3,10 +3,11 @@
     <h3 class="panel-title">
       <div class="title"><%= @post.title %></div>
     </h3>
-    <h6><small>
+    <h5><small>
         作者 <a href="<%= user_path(@conn, :show, @post.user_id) %>"><%= @post.user.name %></a>
-        所属板块 <a href="<%= category_path(@conn, :show, @post.category_id) %>"><mark class="text-muted"><%= @post.category.name %></mark></a>
-    </small></h6>
+        所属板块 <a href="<%= category_path(@conn, :show, @post.category_id) %>"><mark class="text-muted"><%= @post.category.name %></mark></a> - 于 <%= to_string @post.update_time %>
+            最后更新
+    </small></h5>
   </header>
 
   <div class="panel-body">
