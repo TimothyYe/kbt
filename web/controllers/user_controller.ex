@@ -74,8 +74,16 @@ defmodule ElixirChina.UserController do
     user = Repo.get(User, String.to_integer(id))
     changeset = User.changeset(user, params)
 
+    IO.puts params["oldPass"]
+    IO.puts params["newPass"]
+    IO.puts params["confirmPass"]
+
+    if params["newPass"] != params["confirmPass"] do
+      changeset = Ecto.Changeset.add_error(changeset, :name, "新密码两次输入不一致!")
+    end
+
     if changeset.valid? do
-      changeset = Ecto.Changeset.put_change(changeset, :password, params["password"] |> User.encrypt_password |> to_string)
+      changeset = Ecto.Changeset.put_change(changeset, :password, params["newPass"] |> User.encrypt_password |> to_string)
       Repo.update(changeset)
       render conn, "show.html", user: user, user_id: get_session(conn, :user_id)
     else
