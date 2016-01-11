@@ -8,7 +8,8 @@ defmodule ElixirChina.NotificationController do
     current_user_id = get_user_id(conn)
     query = from n in Notification, where: n.user_id == ^current_user_id, preload: :post
     render conn, "index.html", notifications: Repo.all(query),
-                          user_id: get_session(conn, :user_id)
+                          user_id: get_session(conn, :user_id),
+                          current_user: get_session(conn, :current_user)
   end
 
   def delete(conn, %{"id" => id}) do

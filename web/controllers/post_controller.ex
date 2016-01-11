@@ -14,6 +14,7 @@ defmodule ElixirChina.PostController do
           posts: Repo.all(from p in Post, where: p.user_id == ^String.to_integer(user_id), order_by: [{:desc, p.time}], preload: :category),
           user: Repo.get(User, String.to_integer(user_id)),
           user_id: get_session(conn, :user_id),
+          current_user: get_session(conn, :current_user),
           conn: conn,
           pages: 0
   end
@@ -27,7 +28,7 @@ defmodule ElixirChina.PostController do
       post when is_map(post) ->
         user_id = get_session(conn, :user_id)
         comments = get_comments_with_loaded_user(String.to_integer(id))
-        render conn, "show.html", post: post, comments: comments, user_id: user_id, is_admin: is_admin(user_id)
+        render conn, "show.html", post: post, comments: comments, user_id: user_id, current_user: get_session(conn, :current_user), is_admin: is_admin(user_id)
       _ ->
         unauthorized conn
     end
@@ -59,7 +60,7 @@ defmodule ElixirChina.PostController do
     post = validate_and_get_post(conn, id, false)
     case post do
       post when is_map(post) ->
-        render conn, "edit.html", post: post, categories: Repo.all(Category), user_id: get_session(conn, :user_id)
+        render conn, "edit.html", post: post, categories: Repo.all(Category), user_id: get_session(conn, :user_id), current_user: get_session(conn, :current_user)
       _ ->
         unauthorized conn
     end

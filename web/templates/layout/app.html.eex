@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/editor.css" />
-    <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/editor.js"></script>
     <script type="text/javascript" src="/js/marked.js"></script>
@@ -28,7 +28,7 @@
         <%= render @view_module, @view_template, assigns %>
       </div>
       <sidebar class="col-md-3" role="sidebar">
-        <%= if @user_id != nil do
+        <%= if @user_id != nil && @current_user != nil do
           render ElixirChina.SharedView, "_account_info.html", conn: @conn, current_user: @current_user
         end %>
         <%= if show_leaderboard?(@conn) do %>
