@@ -28,6 +28,9 @@
         <%= render @view_module, @view_template, assigns %>
       </div>
       <sidebar class="col-md-3" role="sidebar">
+        <%= if @user_id != nil do
+          render ElixirChina.SharedView, "_account_info.html", conn: @conn, current_user: @current_user
+        end %>
         <%= if show_leaderboard?(@conn) do %>
           <%= render ElixirChina.SharedView, "_leading_board.html", conn: @conn, leading_users: @leading_users %>
           <%= render ElixirChina.SharedView, "_statics.html", post_count: @post_count, comment_count: @comment_count, user_count: @user_count %>

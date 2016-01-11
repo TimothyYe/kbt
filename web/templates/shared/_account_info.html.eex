@@ -1,0 +1,7 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <a class="user_avatar" href="<%= user_path(@conn, :show, @current_user.id) %>">
+      <img src="<%= avatar_url(@current_user && @current_user.email) %>" height="48" width="48" class="img-rounded">
+    </a>
+  </div>
+</div>
