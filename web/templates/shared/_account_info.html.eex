@@ -1,7 +1,15 @@
 <div class="panel panel-default">
-  <div class="panel-body">
-    <a class="user_avatar" href="<%= user_path(@conn, :show, @current_user.id) %>">
-      <img src="<%= avatar_url(@current_user && @current_user.email) %>" height="48" width="48" class="img-rounded">
-    </a>
-  </div>
+	<div class="panel-body">
+  	<div class="row">
+  		<div class="col-md-2">
+    	<a class="user_avatar" href="<%= user_path(@conn, :show, @current_user.id) %>">
+      	<img src="<%= avatar_url(@current_user && @current_user.email) %>" height="48" width="48" class="img-rounded" />
+			</a>
+			</div>
+			<div class="col-md-6">
+				<div><strong><%= @current_user.name %></strong></div>
+				<small>Signature...</small>
+			</div>
+		</div>
+	</div>
 </div>
