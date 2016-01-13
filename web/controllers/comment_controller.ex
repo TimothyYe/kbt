@@ -29,7 +29,7 @@ defmodule ElixirChina.CommentController do
     changeset = Comment.changeset(%Comment{}, comment)
     if changeset.valid? do
       comment = Repo.insert!(changeset)
-      increment_score(Repo.get(User, user_id), 1)
+      increment_score(conn, Repo.get(User, user_id), 1)
       post = from(p in Post, where: p.id == ^comment.post_id, preload: :user)
       |> Repo.one
 
@@ -48,7 +48,8 @@ defmodule ElixirChina.CommentController do
     comment = validate_and_get_comment(conn, id)
     case comment do
       comment when is_map(comment) ->
-        render conn, "edit.html", comment: comment, post_id: post_id, user_id: get_session(conn, :user_id)
+        render conn, "edit.html", comment: comment, post_id: post_id, user_id: get_session(conn, :user_id), 
+        current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id))
       _ ->
         unauthorized conn
     end

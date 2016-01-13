@@ -27,7 +27,7 @@ defmodule ElixirChina.CategoryController do
                       leading_users: Repo.all(from u in User, order_by: [{:desc, u.score}], limit: ^@leading_users_to_display),
                       show_post: true,
                       user_id: get_session(conn, :user_id),
-                      current_user: get_session(conn, :current_user),
+                      current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id)),
                       conn: conn
   end
 
@@ -48,7 +48,7 @@ defmodule ElixirChina.CategoryController do
                       leading_users: Repo.all(from u in User, order_by: [{:desc, u.score}], limit: ^@leading_users_to_display),
                       show_post: true,
                       user_id: get_session(conn, :user_id),
-                      current_user: get_session(conn, :current_user)
+                      current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id))
   end
 
   def show(conn, %{"id" => id}) do

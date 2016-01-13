@@ -7,13 +7,14 @@
       <ol class="list-unstyled">
         <%= for user <- @leading_users do %>
           <li>
-            <span class="top_score"><%= user.score %></span>
+            <span class="badge badge-info"><%= user.score %></span>
             <span class="user_name">
               <a href="<%= user_path(@conn, :show, user.id) %>">
                 <%= user.name %>
               </a>
             </span>
           </li>
+          <div class="sep5"></div>
         <% end %>
       </ol>
     </div>

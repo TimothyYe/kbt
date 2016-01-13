@@ -6,14 +6,24 @@
       	<img src="<%= avatar_url(@current_user && @current_user.email) %>" height="48" width="48" class="img-rounded" />
 			</a>
 			</div>
-			<div class="col-md-6">
-				<div><strong><%= @current_user.name %></strong></div>
-				<small>Signature...</small>
+			<div class="col-md-10">
+				<div class="row">
+					<div class="col-md-12"><strong><%= @current_user.name %></strong></div>
+				</div>
+				<div class="row">
+					<div class="col-md-12"><small>I am a programmer...</small></div>
+				</div>
 			</div>
 		</div>
+		<div class="sep10"></div>
 		<div class="row">
-			<div class="col-md-6">
-				<span class="badge badge-success"> 1 </span> 条未读消息
+			<div class="pull-left col-md-6">
+				<a href="<%= notification_path(@conn, :index) %>">
+					<span class="badge badge-success"> 1 </span> 条未读消息
+				</a>
+			</div>
+			<div class="pull-left col-md-6">
+				<span class="badge badge-info"> <%= @current_user.score %> </span> 积分
 			</div>
 		</div>
 	</div>

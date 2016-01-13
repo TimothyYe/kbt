@@ -23,9 +23,12 @@ defmodule ElixirChina.ControllerUtils do
     end
   end
 
-  def increment_score(user, amount) do
+  def increment_score(conn, user, amount) do
     user = %{user | score: user.score + amount}
     Repo.update(user)
+
+    put_session conn, :current_user, user
+    IO.puts user.score
   end
 
   def unauthorized(conn) do

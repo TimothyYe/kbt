@@ -30,6 +30,14 @@ body {
   height: 5px;
 }
 
+.sep10 {
+  height: 10px;
+}
+
+.sep15 {
+  height: 15px;
+}
+
 .fade {
   color: #AFA8A8;
 }

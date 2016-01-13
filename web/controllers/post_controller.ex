@@ -14,7 +14,7 @@ defmodule ElixirChina.PostController do
           posts: Repo.all(from p in Post, where: p.user_id == ^String.to_integer(user_id), order_by: [{:desc, p.time}], preload: :category),
           user: Repo.get(User, String.to_integer(user_id)),
           user_id: get_session(conn, :user_id),
-          current_user: get_session(conn, :current_user),
+          current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id)),
           conn: conn,
           pages: 0
   end
@@ -28,7 +28,7 @@ defmodule ElixirChina.PostController do
       post when is_map(post) ->
         user_id = get_session(conn, :user_id)
         comments = get_comments_with_loaded_user(String.to_integer(id))
-        render conn, "show.html", post: post, comments: comments, user_id: user_id, current_user: get_session(conn, :current_user), is_admin: is_admin(user_id)
+        render conn, "show.html", post: post, comments: comments, user_id: user_id, current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id)), is_admin: is_admin(user_id)
       _ ->
         unauthorized conn
     end
@@ -49,7 +49,7 @@ defmodule ElixirChina.PostController do
 
     if changeset.valid? do
       post = Repo.insert!(changeset)
-      increment_score(Repo.get(User, user_id), 1)
+      increment_score(conn, Repo.get(User, user_id), 1)
       redirect conn, to: Helpers.post_path(conn, :show, post.id)
     else
         render conn, "new.html", post: post, errors: changeset.errors, user_id: get_session(conn, :user_id), categories: Repo.all(Category)
@@ -60,7 +60,7 @@ defmodule ElixirChina.PostController do
     post = validate_and_get_post(conn, id, false)
     case post do
       post when is_map(post) ->
-        render conn, "edit.html", post: post, categories: Repo.all(Category), user_id: get_session(conn, :user_id), current_user: get_session(conn, :current_user)
+        render conn, "edit.html", post: post, categories: Repo.all(Category), user_id: get_session(conn, :user_id), current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id))
       _ ->
         unauthorized conn
     end
@@ -87,7 +87,7 @@ defmodule ElixirChina.PostController do
       post when is_map(post) ->
         (from n in Notification, where: n.post_id == ^String.to_integer(id)) |> Repo.delete_all
         (from comment in Comment, where: comment.post_id == ^String.to_integer(id)) |> Repo.delete_all
-        increment_score(Repo.get(User, post.user_id), -10)
+        increment_score(conn, Repo.get(User, post.user_id), -10)
         Repo.delete(post)
         json conn, %{location: "/"}
       _ ->
