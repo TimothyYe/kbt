@@ -8,9 +8,10 @@
     <meta name="author" content="">
 
     <title>程序猿键盘发烧社</title>
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/components-md.min.css" />
+    <link rel="stylesheet" href="/css/app.css" />
     <link rel="stylesheet" href="/css/editor.css" />
     <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>

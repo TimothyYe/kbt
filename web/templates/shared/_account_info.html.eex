@@ -11,5 +11,10 @@
 				<small>Signature...</small>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span class="badge badge-success"> 1 </span> 条未读消息
+			</div>
+		</div>
 	</div>
 </div>
