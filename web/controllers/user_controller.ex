@@ -11,7 +11,7 @@ defmodule ElixirChina.UserController do
   def show(conn, %{"id" => id}) do
     case Repo.get(User, String.to_integer(id)) do
       user when is_map(user) ->
-        render conn, "show.html", user: user, user_id: get_session(conn, :user_id), current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id))
+        render conn, "show.html", user: user, user_id: get_session(conn, :user_id), current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id), preload: [:notifications])
       _ ->
         unauthorized conn
     end
@@ -64,7 +64,7 @@ defmodule ElixirChina.UserController do
     end
     case Repo.get(User, String.to_integer(id)) do
       user when is_map(user) ->
-        render conn, "edit.html", user: user, user_id: get_session(conn, :user_id), current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id)), errors: nil
+        render conn, "edit.html", user: user, user_id: get_session(conn, :user_id), current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id), preload: [:notifications]), errors: nil
       _ ->
         unauthorized conn
     end

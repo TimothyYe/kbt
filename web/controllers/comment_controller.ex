@@ -49,7 +49,7 @@ defmodule ElixirChina.CommentController do
     case comment do
       comment when is_map(comment) ->
         render conn, "edit.html", comment: comment, post_id: post_id, user_id: get_session(conn, :user_id), 
-        current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id))
+        current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id), preload: [:notifications])
       _ ->
         unauthorized conn
     end
