@@ -28,14 +28,14 @@ defmodule ElixirChina.PostController do
       post when is_map(post) ->
         user_id = get_session(conn, :user_id)
         comments = get_comments_with_loaded_user(String.to_integer(id))
-        render conn, "show.html", post: post, comments: comments, user_id: user_id, current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id)), is_admin: is_admin(user_id)
+        render conn, "show.html", post: post, comments: comments, user_id: user_id, current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id), preload: [:notifications]), is_admin: is_admin(user_id)
       _ ->
         unauthorized conn
     end
   end
 
   def new(conn, _params) do
-    render conn, "new.html", user_id: get_session(conn, :user_id), post: %Post{}, categories: Repo.all(Category), errors: nil
+    render conn, "new.html", user_id: get_session(conn, :user_id), post: %Post{}, categories: Repo.all(Category), current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id), preload: [:notifications]),errors: nil
   end
 
   def create(conn, %{"post" => %{"title" => title, "content" => content, "category_id" => category_id}}) do
@@ -60,7 +60,7 @@ defmodule ElixirChina.PostController do
     post = validate_and_get_post(conn, id, false)
     case post do
       post when is_map(post) ->
-        render conn, "edit.html", post: post, categories: Repo.all(Category), user_id: get_session(conn, :user_id), current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id))
+        render conn, "edit.html", post: post, categories: Repo.all(Category), user_id: get_session(conn, :user_id), current_user: Repo.one(from u in User, where: u.id == ^get_session(conn, :user_id), preload: [:notifications])
       _ ->
         unauthorized conn
     end
