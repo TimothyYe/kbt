@@ -1,5 +1,7 @@
 # KBT
 
+[![Build Status](https://travis-ci.org/TimothyYe/kbt.svg?branch=master)](https://travis-ci.org/TimothyYe/kbt)
+
 [程序员键盘发烧社](http://kbt.xiaozhou.net), an open source forum, forked from [elixir-china](https://github.com/jw2013/elixir-china).
 
 How to deploy it:
